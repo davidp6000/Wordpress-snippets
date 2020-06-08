@@ -1,0 +1,35 @@
+/*--------------------------------------------------------------
+## Parametrics
+--------------------------------------------------------------*/
+.font-size(@size) {
+  @rem: @size / 16;
+  font-size: @size * 1px;
+  font-size: @rem * 1rem;
+}
+
+.line-height(@size) {
+  @rem: @size / 16;
+  line-height: @size * 1px;
+  line-height: @rem * 1rem;
+}
+/*--------------------------------------------------------------
+## Non-parametrics
+--------------------------------------------------------------*/
+//CONTENT CENTER
+.format-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+//DELETE BACKGROUND-IMAGE
+.hide-background {
+  @media screen and(max-width:1200px) {
+    background-image: none;
+  }
+}
+//DISPLAY BACKGROUND-HEADER
+.style-background {
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+}
