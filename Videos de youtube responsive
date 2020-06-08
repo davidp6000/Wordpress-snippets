@@ -1,0 +1,11 @@
+<?php
+/*--------------------------------------------------------------
+## Responsive video embeds
+--------------------------------------------------------------*/
+/**https://css-tricks.com/snippets/wordpress/remove-width-and-height-attributes-from-inserted-images/ */
+function apollosegundo_responsive_wrap_oembed($html)
+{
+    $html = preg_replace('/(width|height)="\d*"\s/', "", $html);
+    return '<div class="video-wrapper">'.$html.'</div>';
+}
+add_filter('embed_oembed_html', 'apollosegundo_responsive_wrap_oembed');
