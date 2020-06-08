@@ -1,0 +1,23 @@
+<!--NAVIGATION-->
+<?php if (get_next_posts_link() || get_previous_posts_link()): ?>
+<nav id="post-navigation">
+    <li class="previous"><?php previous_posts_link('<i class="fas fa-angle-double-left"></i> Artículos nuevos'); ?>
+    </li>
+    <li class="next"><?php next_posts_link('Artículos anteriores <i class="fas fa-angle-double-right"></i>'); ?>
+    </li>
+</nav>
+<?php endif; ?>
+<!--END NAVIGATION-->
+/*--------------------------------------------------------------
+# NAVIGATION
+--------------------------------------------------------------*/
+#post-navigation {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+#post-navigation li {
+  list-style: none;
+}
