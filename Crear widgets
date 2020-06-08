@@ -1,0 +1,292 @@
+<?php
+
+/*--------------------------------------------------------------
+## WIDGET ABOUT
+--------------------------------------------------------------*/
+
+/** EXTENDEMOS LA CLASE WP_Widget */
+class manuelarnedo_about_widget extends WP_Widget
+{
+    /**USAREMOS CUATRO MÉTODOS */
+    /**CONSTRUCTOR: Muestra el widget en el panel de administración */
+    public function __construct()
+    {
+        $widget_options= array(
+            'classname' => 'widget_about',
+            'description' => 'Muestra una foto y una breve descripción sobre Manuel Arnedo'
+        );
+        /**Creamos un nuevo widget con identificador 'about_widget', con nombre '[PREMIUM] About' y le pasamos unas opciones*/
+        parent::__construct('about_widget', '[PREMIUM] About', $widget_options);
+    }
+    /**FORM: formulario para introducir los datos del widget en el panel de administración*/
+    public function form($instance)
+    {
+        /**Comprobamos si no están vacías para mostrar su valor */
+        $photo_url = !empty($instance['photo_url']) ? $instance['photo_url'] : '';
+        $description = !empty($instance['description']) ? $instance['description'] : '';
+        
+        /**Formulario que se mostrará*/ ?>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('photo_url'); ?>">Pega
+        aquí la url de la foto</label>
+    <input class="widefat" type="text"
+        id="<?php echo $this->get_field_id('photo_url'); ?>"
+        name="<?php echo $this->get_field_name('photo_url'); ?>"
+        value="<?php echo esc_attr($photo_url); ?>">
+</p>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('description'); ?>">Escribe
+        una breve descripción</label>
+    <textarea class="widefat"
+        name="<?php echo $this->get_field_name('description'); ?>"
+        id="<?php echo $this->get_field_id('description'); ?>"
+        cols="20"
+        rows="7"><?php echo esc_attr($description); ?></textarea>
+</p>
+<?php
+    }
+    /**UPDATE: actualiza la información de la base de datos */
+    /**$new_instance: valores añadidos desde el formulario */
+    /**$old_instance: valores existentes en la BBDD */
+    public function update($new_instance, $old_instance)
+    {
+        /**Cargando los valores actuales */
+        $instance= $old_instance;
+        /**Actualizamos con los nuevos valores */
+        $instance['photo_url'] = strip_tags($new_instance['photo_url']);
+        $instance['description'] = strip_tags($new_instance['description']);
+
+        return $instance;
+    }
+
+    /**Define lo que se muestra en el frontend */
+
+    /**OUTPUT: define lo que se muestra en el forntend */
+
+    /**args[]: argumentos indicados en  functions.php al dar de alta el sidebar*/
+
+    /**instance[]: valores asociados a la instancia de widget que se está creando */
+    public function widget($args, $instance)
+    {
+        $photo_url = $instance['photo_url'];
+        $description = $instance['description'];
+
+        echo $args['before_widget']; ?>
+<img src="<?php echo $photo_url; ?>" alt="Manuel Arnedo">
+<p><?php echo $description; ?>
+</p>
+<?php
+        echo $args['after_widget'];
+    }
+}
+
+/**REGISTRAMOS EL WIDGET */
+
+function manuelarnedo_register_about_widget()
+{
+    register_widget('manuelarnedo_about_widget');
+}
+add_action('widgets_init', 'manuelarnedo_register_about_widget');
+
+
+
+/*--------------------------------------------------------------
+## WIDGET BANNER
+--------------------------------------------------------------*/
+
+/** EXTENDEMOS LA CLASE WP_Widget */
+class manuelarnedo_banner_widget extends WP_Widget
+{
+    /**CONSTRUCTOR */
+    public function __construct()
+    {
+        $widget_options= array(
+            'classname' => 'widget_banner',
+            'description' => 'Muestra un banner con un enlace'
+        );
+        parent::__construct('banner_widget', '[PREMIUM] banner', $widget_options);
+    }
+    /**FORM */
+    public function form($instance)
+    {
+        /**Comprobamos si no están vacías para mostrar su valor */
+        $photo_url = !empty($instance['photo_url']) ? $instance['photo_url'] : '';
+        $link = !empty($instance['link']) ? $instance['link'] : '';
+        
+        /**Formulario que se mostrará*/ ?>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('photo_url'); ?>">Pega
+        aquí la url de la foto</label>
+    <input class="widefat" type="text"
+        id="<?php echo $this->get_field_id('photo_url'); ?>"
+        name="<?php echo $this->get_field_name('photo_url'); ?>"
+        value="<?php echo esc_attr($photo_url); ?>">
+</p>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('link'); ?>">Pega
+        aquí la url donde quieres que dirija</label>
+    <input class="widefat" type="text"
+        id="<?php echo $this->get_field_id('link'); ?>"
+        name="<?php echo $this->get_field_name('link'); ?>"
+        value="<?php echo esc_attr($photo_url); ?>">
+</p>
+<?php
+    }
+    /**UPDATE */
+    public function update($new_instance, $old_instance)
+    {
+        $instance= $old_instance;
+        $instance['photo_url'] = strip_tags($new_instance['photo_url']);
+        $instance['link'] = strip_tags($new_instance['link']);
+
+        return $instance;
+    }
+
+    /**OUTPUT*/
+    public function widget($args, $instance)
+    {
+        $photo_url = $instance['photo_url'];
+        $link = $instance['link'];
+
+        echo $args['before_widget']; ?>
+<a href="<?php echo $link; ?>" target="blank"><img
+        src="<?php echo $photo_url; ?>"></a>
+<?php
+        echo $args['after_widget'];
+    }
+}
+
+/**REGISTRAMOS EL WIDGET */
+
+function manuelarnedo_register_banner_widget()
+{
+    register_widget('manuelarnedo_banner_widget');
+}
+add_action('widgets_init', 'manuelarnedo_register_banner_widget');
+
+
+/*--------------------------------------------------------------
+## WIDGET OPTIN
+--------------------------------------------------------------*/
+
+
+class manuelarnedo_optin_widget extends WP_Widget
+{
+    /**CONSTRUCTOR */
+    public function __construct()
+    {
+        $widget_options= array(
+            'classname' => 'widget_optin',
+            'description' => 'Muestra un formulario de optin'
+        );
+        parent::__construct('optin_widget', '[PREMIUM] formulario', $widget_options);
+    }
+    /**FORM */
+    public function form($instance)
+    {
+        /**Comprobamos si no están vacías para mostrar su valor */
+        $cover_url = !empty($instance['cover_url']) ? $instance['cover_url'] : '';
+        $pp_link = !empty($instance['pp_link']) ? $instance['pp_link'] : '';
+        
+        /**Formulario que se mostrará*/ ?>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('cover_url'); ?>">Pega
+        aquí la url de la imagen de portada</label>
+    <input class="widefat" type="text"
+        id="<?php echo $this->get_field_id('cover_url'); ?>"
+        name="<?php echo $this->get_field_name('cover_url'); ?>"
+        value="<?php echo esc_attr($cover_url); ?>">
+</p>
+<p>
+    <label
+        for="<?php echo $this->get_field_id('pp_link'); ?>">Pega
+        aquí hacia la política de privacidad</label>
+    <input class="widefat" type="text"
+        id="<?php echo $this->get_field_id('pp_link'); ?>"
+        name="<?php echo $this->get_field_name('pp_link'); ?>"
+        value="<?php echo esc_attr($pp_link); ?>">
+</p>
+<?php
+    }
+    /**UPDATE */
+    public function update($new_instance, $old_instance)
+    {
+        $instance= $old_instance;
+        $instance['cover_url'] = strip_tags($new_instance['cover_url']);
+        $instance['pp_link'] = strip_tags($new_instance['pp_link']);
+
+        return $instance;
+    }
+
+    /**OUTPUT*/
+    public function widget($args, $instance)
+    {
+        $cover_url = $instance['cover_url'];
+        $pp_link = $instance['pp_link'];
+
+        echo $args['before_widget']; ?>
+<img src="<?php echo $cover_url; ?>">
+<form>
+    <input type="text" class="name_optin" placeholder="Tu nombre">
+    <input type="email" class="mail_optin" placeholder="Tu email">
+    <input type="submit" class="btn" value="¡Envíamelo!">
+    <h6>Al subscribirte estás
+        aceptando la <a
+            href="<?php echo $pp_link; ?>"><strong>Política de
+                privacidad</strong></a>. No recibirás SPAM. Sólo contenido de calidad. Date de
+        baja en cualquier momento.</h6>
+</form>
+<?php
+        echo $args['after_widget'];
+    }
+}
+
+/**REGISTRAMOS EL WIDGET */
+
+function manuelarnedo_register_optin_widget()
+{
+    register_widget('manuelarnedo_optin_widget');
+}
+add_action('widgets_init', 'manuelarnedo_register_optin_widget');
+/*--------------------------------------------------------------
+# WIDGETS
+--------------------------------------------------------------*/
+.widget-area {
+  width: 40%;
+  padding: 0 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.widget-area .widget .widget_text {
+  width: 100%;
+}
+.widget-area .widget-title {
+  text-align: center;
+}
+.widget-area .widget {
+  width: 90%;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+.widget-area .widget img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 200px;
+}
+.widget-area .widget form {
+  text-align: center;
+}
+.widget-area .widget form input {
+  margin-bottom: 10px;
+}
+.widget-area .widget form input[type="submit"] {
+  width: 74%;
+  padding: 3px;
+}
