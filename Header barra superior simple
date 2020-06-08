@@ -39,36 +39,36 @@
   /*********************************************************************************************************//*--------------------------------------------------------------
 # HEADER
 --------------------------------------------------------------*/
-#main-nabvar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    #wrapper-log{
-        width: 130px;
-        margin-left: 30px;
-    }
+#main-nabvar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
-#main-navigation{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    .menu-menu-header-container{
-        display: flex;
-        justify-content: flex-end;
-        ul{
-            margin-right: 60px;
-            list-style: none;
-            li{
-                margin-right: 80px;
-            }
-        }
-    }
-    .menu-toggle{
-        margin-right: 30px;
-        padding: 12px;
-    }
+#main-nabvar #wrapper-log {
+  width: 130px;
+  margin-left: 30px;
+}
+#main-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#main-navigation .menu-menu-header-container {
+  display: flex;
+  justify-content: flex-end;
+}
+#main-navigation .menu-menu-header-container ul {
+  margin-right: 60px;
+  list-style: none;
+}
+#main-navigation .menu-menu-header-container ul li {
+  margin-right: 80px;
+}
+#main-navigation .menu-toggle {
+  margin-right: 30px;
+  padding: 12px;
 }
   
