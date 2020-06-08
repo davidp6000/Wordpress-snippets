@@ -1,0 +1,6 @@
+<form action="/" method="get">
+        <input type="text" name="s" id="search"
+            value="<?php the_search_query(); ?>"
+            placeholder="Busca por palabra clave" class="form-control" />
+        <input type="hidden" value="post" name="post_type" id="post_type" />
+</form>
