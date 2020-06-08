@@ -1,0 +1,50 @@
+/*--------------------------------------------------------------
+    ## FORM STYLES MIXIN
+--------------------------------------------------------------*/
+  .form-styles(){
+    p label{
+      font-weight: 400;
+    }
+    p label::before{
+      content: '*';
+      color: red;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    select,
+    textarea{
+      font-family: @font-heading;
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 20px;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 4px;
+      border-color: black;
+    }
+    input[type="submit"]{
+      padding: 10px 16px;
+      .font-size(20);
+      background-color: @color-primary;
+      color: white;
+      border-style: none;
+      border-radius: 6px;
+      &:hover, &:active{
+        background-color: lighten(@color-primary, 10%);
+        cursor: pointer;
+      }
+    }
+  }
+  /*--------------------------------------------------------------
+## FORM
+--------------------------------------------------------------*/
+.wpcf7 {
+  .form-styles;
+  .wpcf7-not-valid-tip,
+  .wpcf7-response-output {
+    font-family: @font-heading;
+    font-style: italic;
+    margin-top: 5px;
+  }
+}
