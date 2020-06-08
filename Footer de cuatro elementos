@@ -1,0 +1,115 @@
+<footer id="footer" class="site-footer">
+
+		<?php wp_nav_menu(array(
+                'theme_location' => 'menu-footer-superior',
+                'container'=> 'div',
+                'container_id' => 'footer_sup'
+            )) ?>
+
+		<?php
+            $pageId = pruebamanuelarnedo_get_id_by_slug('menu_social');
+            $twitter_social_navbar= get_field('twitter_social', $pageId);
+            $facebook_social_navbar= get_field('facebook_social', $pageId);
+            $linkedin_social_navbar= get_field('linkedin_social', $pageId);
+            ?>
+		<div class="social-navbar">
+			<ul>
+				<?php if (!empty($facebook_social_navbar)): ?>
+				<a target="_blank"
+					href="<?php echo $facebook_social_navbar ?>"><i
+						class="fab fa-facebook-square"></i></a>
+				<?php endif; ?>
+				<?php if (!empty($twitter_social_navbar)): ?>
+				<a target="_blank"
+					href="<?php echo $twitter_social_navbar ?>"><i
+						class="fab fa-twitter"></i></a>
+				<?php endif; ?>
+				<?php if (!empty($linkedin_social_navbar)): ?>
+				<a target="_blank"
+					href="<?php echo $linkedin_social_navbar ?>"><i
+						class="fab fa-linkedin-in"></i></a>
+				<?php endif; ?>
+			</ul>
+		</div>
+		<p id="copyright">Copyright &copy; Manuel Arnedo 2016</p>
+		<p id="menu_inf">
+			<?php wp_nav_menu(array(
+                'theme_location' => 'menu-footer-inferior',
+                'container'=> 'div',
+                'container_id' => 'menu_inf'
+            )); ?>
+		</p>
+	</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	<?php wp_footer(); ?>
+
+	</body>
+
+	</html>
+  /*--------------------------------------------------------------
+# FOOTER
+--------------------------------------------------------------*/
+#footer {
+  margin-top: 70px;
+  background-color: #d1d1d1;
+  display: grid;
+  grid-template-areas: 'navbar social' 'copyright copyright' 'menu_inf menu_inf';
+  grid-template-rows: 80px 40px 30px;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+@media screen and (max-width: 700px) {
+  #footer {
+    display: flex;
+    flex-direction: column;
+  }
+  #footer .social-navbar ul {
+    margin-top: 0;
+  }
+  #footer #menu_inf {
+    margin: 6px 0;
+  }
+}
+#footer #footer_sup {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: navbar;
+}
+#footer #footer_sup ul {
+  display: flex;
+  list-style: none;
+}
+#footer #footer_sup ul li {
+  margin-right: 15px;
+}
+#footer .social-navbar {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: social;
+}
+#footer .social-navbar ul > a {
+  margin-right: 15px;
+}
+#footer #copyright {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: copyright;
+  margin: 0;
+}
+#footer #menu_inf {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: menu_inf;
+}
+#footer #menu_inf ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+#footer #menu_inf ul li {
+  margin-right: 15px;
+}
