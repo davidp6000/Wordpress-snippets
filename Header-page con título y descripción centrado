@@ -1,0 +1,43 @@
+/** ACF */
+$imagen_de_fondo_libros= get_field('imagen_de_fondo_libros');
+
+if (!empty($imagen_de_fondo_libros)):
+?>
+<section class="header-custom-page"
+    style="background-image: url(<?php echo $imagen_de_fondo_libros['url']; ?>)">
+    <?php else: ?>
+    <section class="header-custom-page">
+        <?php endif; ?>
+
+        <div class="wrapper-header-custom-page">
+            <h1>
+                <?php the_field('titulo_libros_cabezera'); ?>
+            </h1>
+            <p>
+                <?php the_field('descripcion_header_libros'); ?>
+            </p>
+        </div>
+    </section>
+    /*-------------------------------------------------------------
+# HEADER LIBROS, ASESORIA, BLOG
+--------------------------------------------------------------*/
+.header-custom-page {
+    .style-background;
+    .wrapper-header-custom-page {
+      background-color: rgba(26, 114, 142, 0.8);
+      width: 100%;
+      height: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: @font-heading;
+      h1,
+      p {
+        margin: 3px auto;
+        color: white;
+        font-family: @font-heading;
+        max-width: 800px;
+      }
+    }
+  }
