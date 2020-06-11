@@ -62,11 +62,11 @@
   justify-content: flex-end;
 }
 #main-navigation #primary-menu ul {
-  margin-right: 60px;
+  margin-right: 20px;
   list-style: none;
 }
 #main-navigation #primary-menu ul li {
-  margin-right: 80px;
+  margin-right: 40px;
 }
 #main-navigation .menu-toggle {
   margin-right: 30px;
