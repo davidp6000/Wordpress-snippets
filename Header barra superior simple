@@ -29,7 +29,8 @@
             wp_nav_menu(
     array(
                     'theme_location' => 'menu-header',
-                    'menu_id'        => 'primary-menu'
+                    'menu_id'        => 'primary-menu',
+		    'container_id' => 'primary-menu'
                 )
 );
             ?>
@@ -56,15 +57,15 @@
   justify-content: flex-end;
   align-items: center;
 }
-#main-navigation .menu-menu-header-container {
+#main-navigation #primary-menu {
   display: flex;
   justify-content: flex-end;
 }
-#main-navigation .menu-menu-header-container ul {
+#main-navigation #primary-menu ul {
   margin-right: 60px;
   list-style: none;
 }
-#main-navigation .menu-menu-header-container ul li {
+#main-navigation #primary-menu ul li {
   margin-right: 80px;
 }
 #main-navigation .menu-toggle {
